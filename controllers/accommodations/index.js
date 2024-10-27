@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import { Accommodation } from "@/models/Accommodation";
+import { Accommodation } from "@models/Accommodation";
 
 const getAccommodations = async (req, res) => {
   try {
@@ -25,4 +24,4 @@ const postAccommodations = async (req, res) => {
   // }
 };
 
-module.exports = { getAccommodations, postAccommodations };
+export { getAccommodations, postAccommodations };
