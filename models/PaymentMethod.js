@@ -1,10 +1,10 @@
-import mongoose from 'mongoose'
-const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types
+const { mongoose } = require("mongoose");
+const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const PaymentMethodSchema = new mongoose.Schema({
   type: {
     type: String,
-    enum: ['OMT', 'wish', 'bob'],
+    enum: ["OMT", "wish", "bob"],
     required: true,
   },
   receiverPhoneNumber: {
@@ -15,22 +15,22 @@ const PaymentMethodSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-})
+});
 
-PaymentMethodSchema.set('toJSON', { getters: true, virtuals: false })
+PaymentMethodSchema.set("toJSON", { getters: true, virtuals: false });
 
 PaymentMethodSchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
+    ret._id = ret._id.toString();
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
   PaymentMethod:
     mongoose.models.PaymentMethod ||
-    mongoose.model('PaymentMethod', PaymentMethodSchema),
+    mongoose.model("PaymentMethod", PaymentMethodSchema),
   PaymentMethodSchema,
-}
+};

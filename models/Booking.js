@@ -1,17 +1,17 @@
-import mongoose from 'mongoose'
-import { Invoice } from '@/models/Invoice'
-import { User } from '@/models/User'
-import { RentalPlace } from '@/models/RentalPlace'
-import { BookingPolicy } from '@/models/BookingPolicy'
-import { PaymentMethod } from '@/models/PaymentMethod'
+const { mongoose } = require("mongoose");
+import { Invoice } from "@/models/Invoice";
+import { User } from "@/models/User";
+import { RentalPlace } from "@/models/RentalPlace";
+import { BookingPolicy } from "@/models/BookingPolicy";
+import { PaymentMethod } from "@/models/PaymentMethod";
 
-const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types
+const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const BookingSchema = new mongoose.Schema(
   {
     RentalPlace: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'RentalPlace',
+      ref: "RentalPlace",
       required: true,
     },
 
@@ -25,18 +25,18 @@ const BookingSchema = new mongoose.Schema(
     },
     BookingPolicy: {
       type: ObjectId,
-      ref: 'BookingPolicy',
+      ref: "BookingPolicy",
       required: true,
     },
     BookedBy: {
       type: ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
     Invoices: [
       {
         type: ObjectId,
-        ref: 'Invoice',
+        ref: "Invoice",
         required: false,
       },
     ],
@@ -47,13 +47,13 @@ const BookingSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: [
-        'pending',
-        'confirmed',
-        'waiting deposit payment',
-        'deposite paid',
-        'full payment paid',
-        'rejected',
-        'cancelled',
+        "pending",
+        "confirmed",
+        "waiting deposit payment",
+        "deposite paid",
+        "full payment paid",
+        "rejected",
+        "cancelled",
       ],
       required: true,
     },
@@ -63,20 +63,20 @@ const BookingSchema = new mongoose.Schema(
     },
   },
   { timestamps: true }
-)
+);
 
-BookingSchema.set('toJSON', { getters: true, virtuals: false })
+BookingSchema.set("toJSON", { getters: true, virtuals: false });
 
 BookingSchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
+    ret._id = ret._id.toString();
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
-  Booking: mongoose.models.Booking || mongoose.model('Booking', BookingSchema),
+  Booking: mongoose.models.Booking || mongoose.model("Booking", BookingSchema),
   BookingSchema,
-}
+};

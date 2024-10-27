@@ -1,4 +1,4 @@
-import { Accommodation } from "@models/Accommodation";
+const { Accommodation } = require("@models/Accommodation");
 
 const getAccommodations = async (req, res) => {
   try {
@@ -24,4 +24,4 @@ const postAccommodations = async (req, res) => {
   // }
 };
 
-export { getAccommodations, postAccommodations };
+module.exports = { getAccommodations, postAccommodations };

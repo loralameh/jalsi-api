@@ -1,19 +1,19 @@
-import mongoose from 'mongoose'
-import { OwnerUserGroup } from 'src/models/OwnerUserGroup'
-import { SubscriptionPlan } from 'src/models/SubscriptionPlan'
-import { PaymentMethod } from 'src/models/PaymentMethod'
-import { User } from 'src/models/User'
-const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types
+const { mongoose } = require("mongoose");
+import { OwnerUserGroup } from "src/models/OwnerUserGroup";
+import { SubscriptionPlan } from "src/models/SubscriptionPlan";
+import { PaymentMethod } from "src/models/PaymentMethod";
+import { User } from "src/models/User";
+const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const PropertyOwnerSchema = new mongoose.Schema({
   User: {
     type: ObjectId,
-    ref: 'User',
+    ref: "User",
   },
   OwnerUserGroups: [
     {
       type: ObjectId,
-      ref: 'OwnerUserGroup',
+      ref: "OwnerUserGroup",
       required: false,
     },
   ],
@@ -21,31 +21,31 @@ const PropertyOwnerSchema = new mongoose.Schema({
   PaymentMethods: [
     {
       type: ObjectId,
-      ref: 'PaymentMethod',
+      ref: "PaymentMethod",
     },
   ],
 
   SubscriptionPlan: {
     type: ObjectId,
-    ref: 'SubscriptionPlan',
+    ref: "SubscriptionPlan",
     required: false,
   },
-})
+});
 
-PropertyOwnerSchema.set('toJSON', { getters: true, virtuals: false })
+PropertyOwnerSchema.set("toJSON", { getters: true, virtuals: false });
 
 PropertyOwnerSchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
+    ret._id = ret._id.toString();
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
   PropertyOwner:
     mongoose.models.PropertyOwner ||
-    mongoose.model('PropertyOwner', PropertyOwnerSchema),
+    mongoose.model("PropertyOwner", PropertyOwnerSchema),
   PropertyOwnerSchema,
-}
+};

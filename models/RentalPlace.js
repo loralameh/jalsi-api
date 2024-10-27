@@ -1,32 +1,32 @@
-import mongoose from 'mongoose'
-import { Review } from '@/models/Review'
-import { Accommodation } from '@/models/Accommodation'
-import { Pool } from '@/models/Pool'
-import { PropertyOwner } from '@/models/PropertyOwner'
-import { BookingPolicy } from '@/models/BookingPolicy'
-import { Amenity } from 'src/models/Amenity'
-import { Tag } from '@/models/Tag'
+const { mongoose } = require("mongoose");
+import { Review } from "@/models/Review";
+import { Accommodation } from "@/models/Accommodation";
+import { Pool } from "@/models/Pool";
+import { PropertyOwner } from "@/models/PropertyOwner";
+import { BookingPolicy } from "@/models/BookingPolicy";
+import { Amenity } from "src/models/Amenity";
+import { Tag } from "@/models/Tag";
 
-const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types
+const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const amenityMapSchema = new mongoose.Schema({
   //ex: aminity: parking available , details: 3 cars
-  Amenity: { type: ObjectId, ref: 'Amenity' },
+  Amenity: { type: ObjectId, ref: "Amenity" },
   details: {
     type: String,
   },
-})
+});
 const RentalPlaceSchema = new mongoose.Schema(
   {
     PropertyOwner: {
       type: ObjectId,
-      ref: 'PropertyOwner',
+      ref: "PropertyOwner",
       required: true,
     },
     Tags: [
       {
         type: ObjectId,
-        ref: 'Tag',
+        ref: "Tag",
         required: true,
       },
     ],
@@ -41,13 +41,13 @@ const RentalPlaceSchema = new mongoose.Schema(
     Pools: [
       {
         type: ObjectId,
-        ref: 'Pool',
+        ref: "Pool",
         required: false,
       },
     ],
     Accommodation: {
       type: ObjectId,
-      ref: 'Accommodation',
+      ref: "Accommodation",
       required: false,
     },
     amenities: [
@@ -60,7 +60,7 @@ const RentalPlaceSchema = new mongoose.Schema(
       // array of policies (1 policy/ 1 OwnerUserGroup)
       {
         type: ObjectId,
-        ref: 'BookingPolicy',
+        ref: "BookingPolicy",
         required: false,
       },
     ],
@@ -75,7 +75,7 @@ const RentalPlaceSchema = new mongoose.Schema(
     Reviews: [
       {
         type: ObjectId,
-        ref: 'Review',
+        ref: "Review",
         required: false,
       },
     ],
@@ -163,23 +163,23 @@ const RentalPlaceSchema = new mongoose.Schema(
     // ],
   },
   { timestamps: true }
-)
+);
 
-RentalPlaceSchema.set('toJSON', { getters: true, virtuals: false })
+RentalPlaceSchema.set("toJSON", { getters: true, virtuals: false });
 
 RentalPlaceSchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
-    delete ret.__v
+    ret._id = ret._id.toString();
+    delete ret.__v;
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
   RentalPlace:
     mongoose.models.RentalPlace ||
-    mongoose.model('RentalPlace', RentalPlaceSchema),
+    mongoose.model("RentalPlace", RentalPlaceSchema),
   RentalPlaceSchema,
-}
+};

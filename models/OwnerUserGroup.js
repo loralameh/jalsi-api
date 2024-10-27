@@ -1,12 +1,12 @@
-import mongoose from 'mongoose'
-import { User } from 'src/models/User'
-import { PropertyOwner } from 'src/models/PropertyOwner'
-const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types
+const { mongoose } = require("mongoose");
+import { User } from "src/models/User";
+import { PropertyOwner } from "src/models/PropertyOwner";
+const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const OwnerUserGroupSchema = new mongoose.Schema({
   PropertyOwner: {
     type: ObjectId,
-    ref: 'PropertyOwner',
+    ref: "PropertyOwner",
   },
   name: {
     //group name: by default we have default group and blocked group
@@ -16,25 +16,25 @@ const OwnerUserGroupSchema = new mongoose.Schema({
   Users: [
     {
       type: ObjectId,
-      ref: 'User',
+      ref: "User",
     },
   ],
-})
+});
 
-OwnerUserGroupSchema.set('toJSON', { getters: true, virtuals: false })
+OwnerUserGroupSchema.set("toJSON", { getters: true, virtuals: false });
 
 OwnerUserGroupSchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
+    ret._id = ret._id.toString();
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
   OwnerUserGroup:
     mongoose.models.OwnerUserGroup ||
-    mongoose.model('OwnerUserGroup', OwnerUserGroupSchema),
+    mongoose.model("OwnerUserGroup", OwnerUserGroupSchema),
   OwnerUserGroupSchema,
-}
+};

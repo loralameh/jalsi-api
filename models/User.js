@@ -1,9 +1,9 @@
-import mongoose from 'mongoose'
-import { RentalPlace } from '@/models/RentalPlace'
-import { Booking } from '@/models/Booking'
-import { Notification } from '@/models/Notification'
-import { PropertyOwner } from '@/models/PropertyOwner'
-const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types
+const { mongoose } = require("mongoose");
+import { RentalPlace } from "@/models/RentalPlace";
+import { Booking } from "@/models/Booking";
+import { Notification } from "@/models/Notification";
+import { PropertyOwner } from "@/models/PropertyOwner";
+const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const UserSchema = new mongoose.Schema(
   {
@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
     profileImage: {
       type: String,
       required: false,
-      default: 'https://i.stack.imgur.com/34AD2.jpg',
+      default: "https://i.stack.imgur.com/34AD2.jpg",
     },
     email: {
       type: String,
@@ -39,7 +39,7 @@ const UserSchema = new mongoose.Schema(
     ReviewedPlaces: [
       {
         type: ObjectId,
-        ref: 'RentalPlace',
+        ref: "RentalPlace",
       },
     ],
     address: {
@@ -51,25 +51,25 @@ const UserSchema = new mongoose.Schema(
       //list of booked properties by this user
       {
         type: ObjectId,
-        ref: 'Booking',
+        ref: "Booking",
       },
     ],
     FavoritePlaces: [
       {
         type: ObjectId,
-        ref: 'RentalPlace',
+        ref: "RentalPlace",
       },
     ],
     PropertyOwner: {
       type: ObjectId,
-      ref: 'PropertyOwner',
+      ref: "PropertyOwner",
       required: false,
     },
     role: {
       type: String,
-      enum: ['user', 'property-owner', 'super-admin'],
+      enum: ["user", "property-owner", "super-admin"],
       required: true,
-      default: 'user',
+      default: "user",
     },
     isPhoneVarified: {
       type: Boolean,
@@ -80,26 +80,26 @@ const UserSchema = new mongoose.Schema(
     Notifications: [
       {
         type: ObjectId,
-        ref: 'Notification',
+        ref: "Notification",
         required: false,
       },
     ],
   },
   { timestamps: true }
-)
+);
 
-UserSchema.set('toJSON', { getters: true, virtuals: false })
+UserSchema.set("toJSON", { getters: true, virtuals: false });
 
 UserSchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
+    ret._id = ret._id.toString();
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
-  User: mongoose.models.User || mongoose.model('User', UserSchema),
+  User: mongoose.models.User || mongoose.model("User", UserSchema),
   UserSchema,
-}
+};

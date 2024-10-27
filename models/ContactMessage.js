@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
-const { String } = mongoose.Schema.Types
+const { mongoose } = require("mongoose");
+const { String } = mongoose.Schema.Types;
 
 const ContactMessageSchema = new mongoose.Schema({
   name: {
@@ -18,22 +18,22 @@ const ContactMessageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-})
+});
 
-ContactMessageSchema.set('toJSON', { getters: true, virtuals: false })
+ContactMessageSchema.set("toJSON", { getters: true, virtuals: false });
 
 ContactMessageSchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
+    ret._id = ret._id.toString();
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
   ContactMessage:
     mongoose.models.ContactMessage ||
-    mongoose.model('ContactMessage', ContactMessageSchema),
+    mongoose.model("ContactMessage", ContactMessageSchema),
   ContactMessageSchema,
-}
+};

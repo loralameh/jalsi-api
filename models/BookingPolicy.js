@@ -1,24 +1,24 @@
-import mongoose from 'mongoose'
-import { OwnerUserGroup } from 'src/models/OwnerUserGroup'
-import { PaymentMethod } from 'src/models/PaymentMethod'
+const { mongoose } = require("mongoose");
+import { OwnerUserGroup } from "src/models/OwnerUserGroup";
+import { PaymentMethod } from "src/models/PaymentMethod";
 
-const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types
+const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const BookingPolicySchema = new mongoose.Schema({
   UserGroup: {
     type: ObjectId,
-    ref: 'OwnerUserGroup',
+    ref: "OwnerUserGroup",
     required: true,
   },
   PropertyOwner: {
     type: ObjectId,
-    ref: 'OwnerUserGroup',
+    ref: "OwnerUserGroup",
     required: true,
   },
   AcceptedPaymentMethods: [
     {
       type: ObjectId,
-      ref: 'PaymentMethod',
+      ref: "PaymentMethod",
       required: true,
     },
   ],
@@ -80,22 +80,22 @@ const BookingPolicySchema = new mongoose.Schema({
     type: Boolean,
     required: false,
   },
-})
+});
 
-BookingPolicySchema.set('toJSON', { getters: true, virtuals: false })
+BookingPolicySchema.set("toJSON", { getters: true, virtuals: false });
 
 BookingPolicySchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
+    ret._id = ret._id.toString();
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
   BookingPolicy:
     mongoose.models.BookingPolicy ||
-    mongoose.model('BookingPolicy', BookingPolicySchema),
+    mongoose.model("BookingPolicy", BookingPolicySchema),
   BookingPolicySchema,
-}
+};

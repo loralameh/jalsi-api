@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
-import { TagCategory } from '@/models/TagCategory'
-const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types
+const { mongoose } = require("mongoose");
+import { TagCategory } from "@/models/TagCategory";
+const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const TagSchema = new mongoose.Schema({
   name: {
@@ -10,7 +10,7 @@ const TagSchema = new mongoose.Schema({
 
   Category: {
     type: ObjectId,
-    ref: 'TagCategory',
+    ref: "TagCategory",
     required: true,
   },
 
@@ -23,20 +23,20 @@ const TagSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-})
+});
 
-TagSchema.set('toJSON', { getters: true, virtuals: false })
+TagSchema.set("toJSON", { getters: true, virtuals: false });
 
 TagSchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
+    ret._id = ret._id.toString();
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
-  Tag: mongoose.models.Tag || mongoose.model('Tag', TagSchema),
+  Tag: mongoose.models.Tag || mongoose.model("Tag", TagSchema),
   TagSchema,
-}
+};

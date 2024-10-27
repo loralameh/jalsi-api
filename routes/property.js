@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import the controllers and middleware for this model
-const userController = require("@controllers/accomodation");
+const userController = require("@controllers/accommodations");
 // const authMiddleware = require("../middlewares/authMiddleware");
 
 // Define routes for this model

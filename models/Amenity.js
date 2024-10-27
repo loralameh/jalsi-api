@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
-const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types
+const { mongoose } = require("mongoose");
+const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const AmenitySchema = new mongoose.Schema({
   name: {
@@ -14,20 +14,20 @@ const AmenitySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-})
+});
 
-AmenitySchema.set('toJSON', { getters: true, virtuals: false })
+AmenitySchema.set("toJSON", { getters: true, virtuals: false });
 
 AmenitySchema.options.toJSON = {
   virtuals: true,
   transform: function (doc, ret, options) {
-    ret._id = ret._id.toString()
+    ret._id = ret._id.toString();
 
-    return ret
+    return ret;
   },
-}
+};
 
 module.exports = {
-  Amenity: mongoose.models.Amenity || mongoose.model('Amenity', AmenitySchema),
+  Amenity: mongoose.models.Amenity || mongoose.model("Amenity", AmenitySchema),
   AmenitySchema,
-}
+};
