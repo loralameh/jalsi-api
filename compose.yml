@@ -23,14 +23,14 @@ services:
       - ${APP_PORT}:3000
     volumes:
       - ./:/app
-    labels:
-      # - traefik.enable=true
-      # - traefik.http.routers.portainer-https.entrypoints=websecure
-      # - traefik.http.routers.portainer-https.rule=Host(`portainer.c-pi-01.clinikit.io`)
-      # - traefik.http.routers.portainer-https.tls=true
-      # - traefik.http.routers.portainer-https.tls.certresolver=dns-cloudflare
-      # - traefik.http.routers.portainer-http.entrypoints=web
-      # - traefik.http.routers.portainer-http.rule=Host(`portainer.c-pi-01.clinikit.io`)
+    # labels:
+    # - traefik.enable=true
+    # - traefik.http.routers.portainer-https.entrypoints=websecure
+    # - traefik.http.routers.portainer-https.rule=Host(`portainer.c-pi-01.clinikit.io`)
+    # - traefik.http.routers.portainer-https.tls=true
+    # - traefik.http.routers.portainer-https.tls.certresolver=dns-cloudflare
+    # - traefik.http.routers.portainer-http.entrypoints=web
+    # - traefik.http.routers.portainer-http.rule=Host(`portainer.c-pi-01.clinikit.io`)
 #           # Frontend
 #         - "traefik.enable=true"
 #         - "traefik.http.routers.${CONTAINER_NAME}.rule=Host(`${TRAEFIK_HOST}`)"
