@@ -28,6 +28,8 @@
     "@middleware": "./middleware",
     "@api": "./api",
     "@libs": "./libs",
-    "@db": "./db"
+    "@db": "./db",
+    "@controllers": "./controllers",
+    "@models": "./models"
   }
 }
