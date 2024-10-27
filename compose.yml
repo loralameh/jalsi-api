@@ -1,0 +1,46 @@
+## https://hackernoon.com/a-better-way-to-develop-node-js-with-docker-cd29d3a0093
+version: "3.3"
+services:
+  app:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    #   args:
+    #     NODE_VER: ${NODE_VER}
+    #     NODE_ENV: ${NODE_ENV:-development}
+    #     UID: ${UID}
+    #     GID: ${GID}
+    image: ${IMAGE_NAME:-static-api}:${IMAGE_VER:-22}
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      - TZ=${TZ}
+      - NODE_ENV=${NODE_ENV:-development}
+    working_dir: /app
+    command: "yarn run ${NODE_SCRIPT:-dev}"
+    ports:
+      - ${APP_PORT}:3000
+    volumes:
+      - ./:/app
+    labels:
+      # - traefik.enable=true
+      # - traefik.http.routers.portainer-https.entrypoints=websecure
+      # - traefik.http.routers.portainer-https.rule=Host(`portainer.c-pi-01.clinikit.io`)
+      # - traefik.http.routers.portainer-https.tls=true
+      # - traefik.http.routers.portainer-https.tls.certresolver=dns-cloudflare
+      # - traefik.http.routers.portainer-http.entrypoints=web
+      # - traefik.http.routers.portainer-http.rule=Host(`portainer.c-pi-01.clinikit.io`)
+#           # Frontend
+#         - "traefik.enable=true"
+#         - "traefik.http.routers.${CONTAINER_NAME}.rule=Host(`${TRAEFIK_HOST}`)"
+#         - "traefik.http.routers.${CONTAINER_NAME}.entrypoints=websecure"
+#         - "traefik.http.services.${CONTAINER_NAME}.loadbalancer.server.port=3000"
+#         - "traefik.http.routers.${CONTAINER_NAME}.service=${CONTAINER_NAME}"
+#         - "traefik.http.routers.${CONTAINER_NAME}.tls.certresolver=dns-cloudflare"
+
+#     networks:
+#         - traefik-network
+# networks:
+#     traefik-network:
+#         external: true
