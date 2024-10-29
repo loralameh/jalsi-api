@@ -1,9 +1,9 @@
 const { mongoose } = require("mongoose");
-import { Invoice } from "@/models/Invoice";
-import { User } from "@/models/User";
-import { RentalPlace } from "@/models/RentalPlace";
-import { BookingPolicy } from "@/models/BookingPolicy";
-import { PaymentMethod } from "@/models/PaymentMethod";
+import { Invoice } from "@models/Invoice";
+import { User } from "@models/User";
+import { RentalPlace } from "@models/RentalPlace";
+import { BookingPolicy } from "@models/BookingPolicy";
+import { PaymentMethod } from "@models/PaymentMethod";
 
 const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 

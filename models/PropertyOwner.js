@@ -1,8 +1,8 @@
 const { mongoose } = require("mongoose");
-import { OwnerUserGroup } from "src/models/OwnerUserGroup";
-import { SubscriptionPlan } from "src/models/SubscriptionPlan";
-import { PaymentMethod } from "src/models/PaymentMethod";
-import { User } from "src/models/User";
+import { OwnerUserGroup } from "@models/OwnerUserGroup";
+import { SubscriptionPlan } from "@models/SubscriptionPlan";
+import { PaymentMethod } from "@models/PaymentMethod";
+import { User } from "@models/User";
 const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const PropertyOwnerSchema = new mongoose.Schema({

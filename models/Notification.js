@@ -1,6 +1,6 @@
 const { mongoose } = require("mongoose");
-import { User } from "src/models/User";
-import { PropertyOwner } from "src/models/PropertyOwner";
+import { User } from "@models/User";
+import { PropertyOwner } from "@models/PropertyOwner";
 
 const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 

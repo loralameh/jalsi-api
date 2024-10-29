@@ -1,11 +1,11 @@
 const { mongoose } = require("mongoose");
-import { Review } from "@/models/Review";
-import { Accommodation } from "@/models/Accommodation";
-import { Pool } from "@/models/Pool";
-import { PropertyOwner } from "@/models/PropertyOwner";
-import { BookingPolicy } from "@/models/BookingPolicy";
-import { Amenity } from "src/models/Amenity";
-import { Tag } from "@/models/Tag";
+import { Review } from "@models/Review";
+import { Accommodation } from "@models/Accommodation";
+import { Pool } from "@models/Pool";
+import { PropertyOwner } from "@models/PropertyOwner";
+import { BookingPolicy } from "@models/BookingPolicy";
+import { Amenity } from "@models/Amenity";
+import { Tag } from "@models/Tag";
 
 const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 

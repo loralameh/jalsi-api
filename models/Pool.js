@@ -1,5 +1,5 @@
 const { mongoose } = require("mongoose");
-import { Tag } from "@/models/Tag";
+import { Tag } from "@models/Tag";
 const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const PoolSchema = new mongoose.Schema(

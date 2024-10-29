@@ -1,5 +1,5 @@
 const { mongoose } = require("mongoose");
-import { TagCategory } from "@/models/TagCategory";
+import { TagCategory } from "@models/TagCategory";
 const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const TagSchema = new mongoose.Schema({

@@ -1,10 +1,28 @@
 const { mongoose } = require("mongoose");
-import { RentalPlace } from "@/models/RentalPlace";
-import { Booking } from "@/models/Booking";
-import { Notification } from "@/models/Notification";
-import { PropertyOwner } from "@/models/PropertyOwner";
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+// const RentalPlace = require("@models/RentalPlace");
+// const Booking = require("@models/Booking");
+// const Notification = require("@models/Notification");
+// const PropertyOwner = require("@models/PropertyOwner");
+
 const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
+const phoneNumberSchema = new mongoose.Schema({
+  countryCode: {
+    type: String,
+    required: true,
+    match: /^\+\d{1,3}$/, // Matches country code with + and 1-3 digits
+    trim: true,
+  },
+  number: {
+    type: String,
+    required: true,
+    unique: true,
+    match: /^\d{7,14}$/, // Matches a phone number with 7 to 14 digits
+    trim: true,
+  },
+});
 const UserSchema = new mongoose.Schema(
   {
     firstName: {
@@ -17,13 +35,12 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: false,
+      required: [true, "Please provide password"],
+      minlength: 6,
     },
     phoneNumber: {
-      type: String,
-      required: false,
-      unique: true,
-      sparse: true, //ignore null values
+      type: phoneNumberSchema,
+      required: true,
     },
     profileImage: {
       type: String,
@@ -32,10 +49,12 @@ const UserSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
-      unique: true,
+      required: false,
+      match: [
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Please provide a valid email",
+      ],
     },
-
     ReviewedPlaces: [
       {
         type: ObjectId,
@@ -97,6 +116,22 @@ UserSchema.options.toJSON = {
 
     return ret;
   },
+};
+
+UserSchema.pre("save", async function () {
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
+UserSchema.methods.createJWT = function () {
+  return jwt.sign({ _id: this._id, role: this.role }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_LIFETIME,
+  });
+};
+
+UserSchema.methods.comparePassword = async function (canditatePassword) {
+  const isMatch = await bcrypt.compare(canditatePassword, this.password);
+  return isMatch;
 };
 
 module.exports = {

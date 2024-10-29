@@ -1,7 +1,7 @@
 const { mongoose } = require("mongoose");
-import { RentalPlace } from "src/models/RentalPlace";
-import { Booking } from "src/models/Booking";
-import { User } from "src/models/User";
+import { RentalPlace } from "@models/RentalPlace";
+import { Booking } from "@models/Booking";
+import { User } from "@models/User";
 const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
 const ReviewSchema = new mongoose.Schema(

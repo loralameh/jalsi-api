@@ -1,6 +1,6 @@
 const { mongoose } = require("mongoose");
-import { OwnerUserGroup } from "src/models/OwnerUserGroup";
-import { PaymentMethod } from "src/models/PaymentMethod";
+import { OwnerUserGroup } from "@models/OwnerUserGroup";
+import { PaymentMethod } from "@models/PaymentMethod";
 
 const { ObjectId, Number, String, Date, Boolean } = mongoose.Schema.Types;
 
