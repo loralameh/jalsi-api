@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { RentalPlace } from "@/models/RentalPlace";
+import { RentalPlace } from "@models/RentalPlace";
 
 import dayjs from "dayjs";
 import {
   getFullyBookedPlaces,
   getRentalPlaceMinMaxPrice,
-} from "@/lib/backendHelpers/rentalPlace";
+} from "@lib/backendHelpers/rentalPlace";
 
 export async function GET(req) {
   try {

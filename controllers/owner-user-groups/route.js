@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { OwnerUserGroup } from "@/models/OwnerUserGroup";
+import { OwnerUserGroup } from "@models/OwnerUserGroup";
 
 export async function GET(req) {
   try {

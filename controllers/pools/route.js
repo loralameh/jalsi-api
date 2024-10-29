@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Pool } from "@/models/Pool";
+import { Pool } from "@models/Pool";
 
 export async function POST(req) {
   try {

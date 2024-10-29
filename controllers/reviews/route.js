@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Review } from "@/models/Review";
+import { Review } from "@models/Review";
 
 export async function GET(req) {
   try {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { PropertyOwner } from "@/models/PropertyOwner";
+import { PropertyOwner } from "@models/PropertyOwner";
 
 export async function GET(req) {
   try {

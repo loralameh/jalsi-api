@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Booking } from "@/models/Booking";
+import { Booking } from "@models/Booking";
 
 import dayjs from "dayjs";
 

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Tag } from "@/models/Tag";
+import { Tag } from "@models/Tag";
 
 export async function GET(req) {
   try {

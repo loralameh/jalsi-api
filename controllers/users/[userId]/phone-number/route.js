@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { User } from "@/models/User";
+import { User } from "@models/User";
 
 // https://github.com/TwilioDevEd/verify-v2-quickstart-node/blob/next/routes/verify.js
 import twilio from "twilio";

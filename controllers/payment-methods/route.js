@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { PaymentMethod } from "@/models/PaymentMethod";
+import { PaymentMethod } from "@models/PaymentMethod";
 
 export async function GET(req) {
   try {

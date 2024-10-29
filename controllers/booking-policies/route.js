@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { BookingPolicy } from "@/models/BookingPolicy";
+import { BookingPolicy } from "@models/BookingPolicy";
 
 export async function GET(req) {
   try {

@@ -1,5 +1,5 @@
-import { Property } from "@/models/Pool";
-import { Pool } from "@/models/Pool";
+import { Property } from "@models/Pool";
+import { Pool } from "@models/Pool";
 
 export async function GET(req) {
   try {
